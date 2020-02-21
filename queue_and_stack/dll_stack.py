@@ -26,8 +26,3 @@ class Stack:
         return self.size
 
 
-s = Stack()
-s.push(100)
-s.push(101)
-s.push(105)
-print(s.pop())

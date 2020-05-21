@@ -29,7 +29,7 @@ class Queue:
 
     def dequeue(self):
         if self.size == 0:
-            pass
+            return None
         else:
             self.size -= 1
             removed = self.storage[0]

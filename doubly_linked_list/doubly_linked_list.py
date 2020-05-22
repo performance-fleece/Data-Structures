@@ -130,15 +130,18 @@ class DoublyLinkedList:
     List and inserts it as the new head node of the List."""
 
     def move_to_front(self, node):
-        if self.head == self.tail or node == self.head:
-            print("already head or head/tail same")
-            return
-        else:
-            current_node = node
-            current_node.prev.next = current_node.next
-            current_node.next = self.head
-            self.head.prev = current_node
-            self.head = current_node
+        # if self.head == self.tail or node == self.head:
+        #     print("already head or head/tail same")
+        #     return
+        # else:
+        #     current_node = node
+        #     current_node.prev.next = current_node.next
+        #     current_node.next = self.head
+        #     self.head.prev = current_node
+        #     self.head = current_node
+        value = node.value
+        self.delete(node)
+        self.add_to_head(value)
 
     """Removes the input node from its current spot in the
     List and inserts it as the new tail node of the List."""
@@ -160,22 +163,32 @@ class DoublyLinkedList:
             print("empty list")
             return
         self.length -= 1
+        # if head is tail
         if self.head == self.tail:
             self.head = None
             self.tail = None
-
+        # if head
         if node == self.head:
             self.head = node.next
             self.head.prev = None
-
+        # if tail
         if node == self.tail:
             self.tail = node.prev
             self.tail.next = None
-
+        # if middle
         else:
             node.delete()
 
     """Returns the highest value currently in the list"""
 
     def get_max(self):
-        pass
+        if self.length == 0:
+            return None
+
+        max_value = self.head.value
+        current = self.head.next
+        while current:
+            if current.value > max_value:
+                max_value = current.value
+            current = current.next
+        return max_value
